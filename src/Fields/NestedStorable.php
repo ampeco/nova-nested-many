@@ -154,9 +154,13 @@ trait NestedStorable
     {
         $replacements = Util::dependentRules($this->attribute);
 
+        $dependsRequest = NovaRequest::createFrom($request);
+
+        $dependsRequest->replace($request->get($this->attribute)[$index] ?? []);
+
         return $resource->creationFields($request)
             ->reject($this->rejectRecursiveRelatedResourceFields($request))
-            ->applyDependsOn($request)
+            ->applyDependsOn($dependsRequest)
             ->mapWithKeys(function ($field) use ($request, $index) {
                 if ($field instanceof HasManyNested) {
                     return $field->getCreationRulesFromParent($request, $this->resourceName, $this->attribute, $index);
@@ -198,9 +202,13 @@ trait NestedStorable
             Util::dependentRules($this->attribute),
         )->filter()->all();
 
+        $dependsRequest = NovaRequest::createFrom($request);
+
+        $dependsRequest->replace($request->get($this->attribute)[$index] ?? []);
+
         return $resource->updateFields($request)
             ->reject($this->rejectRecursiveRelatedResourceFields($request))
-            ->applyDependsOn($request)
+            ->applyDependsOn($dependsRequest)
             ->mapWithKeys(function ($field) use ($request, $index) {
                 if ($field instanceof HasManyNested) {
                     return $field->getUpdateRulesFromParent($request, $this->resourceName, $this->attribute, $index);
