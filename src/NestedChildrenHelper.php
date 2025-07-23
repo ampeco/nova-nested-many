@@ -66,10 +66,10 @@ class NestedChildrenHelper
 
             $relations = [];
 
-            if(array_key_exists('nestedManyFields', $child)) {
+            if (array_key_exists('nestedManyFields', $child)) {
                 $nestedRelations = (array) $child['nestedManyFields'];
-                if($withRelations) {
-                    foreach($nestedRelations as $attribute => $options) {
+                if ($withRelations) {
+                    foreach ($nestedRelations as $attribute => $options) {
                         $relations[$attribute] = [
                             'resourceClass' => $options['resourceClass'],
                             'resourceName' => $options['resourceName'],

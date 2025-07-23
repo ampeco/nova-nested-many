@@ -27,8 +27,8 @@ class NestedActionRequest extends ActionRequest implements NestedResourceRequest
      */
     public function newNested(string $relationName = ''): Nested
     {
-        if($relationName) {
-            if(!array_key_exists($relationName, $this->nestedRelationsShipModels)) {
+        if ($relationName) {
+            if (!array_key_exists($relationName, $this->nestedRelationsShipModels)) {
                 throw new Exception("relation {$relationName} is not managed by NestedMany!");
             }
             return new Nested($this->nestedRelationsShipModels[$relationName], [], true);
@@ -42,7 +42,7 @@ class NestedActionRequest extends ActionRequest implements NestedResourceRequest
 
         $relations = [];
 
-        foreach($child['relations'] as $name => $relation) {
+        foreach ($child['relations'] as $name => $relation) {
 
             $oldResourceName = $request->route('resource');
             $request->route()->setParameter('resource', $relation['resourceName']);
