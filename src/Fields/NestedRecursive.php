@@ -55,7 +55,7 @@ trait NestedRecursive
 
         $resources = [];
 
-        foreach($resource->getRelations() as $name => $relatedResources) {
+        foreach ($resource->getRelations() as $name => $relatedResources) {
             $oldResourceName = $request->route('resource');
             $request->route()->setParameter('resource', $this->resourceName);
 
