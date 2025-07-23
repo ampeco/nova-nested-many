@@ -1,3 +1,9 @@
+## v2.2.5 v1.7.4
+
+### Bug Fix
+
+-   dependsOn before retrieve rules
+
 ## v2.2.4 v1.7.3
 
 ### Bug Fix
