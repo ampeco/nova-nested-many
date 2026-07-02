@@ -64,7 +64,7 @@ trait NestedStorable
      *
      * @return array<string, string>
      */
-    public function getValidationAttributeNames(NovaRequest $request)
+    public function getValidationAttributeNames(NovaRequest $request): array
     {
         $resourceClass = $this->resourceClass;
         $resource = new $resourceClass($resourceClass::newModel());
