@@ -58,7 +58,7 @@ class NestedManyServiceProvider extends ServiceProvider
             return;
         }
 
-        Route::middleware(['nova'])
+        Route::middleware(['nova:api'])
             ->prefix('nova-vendor/nested-many')
             ->group(__DIR__ . '/../routes/api.php');
     }

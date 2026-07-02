@@ -3,6 +3,10 @@
 namespace Lupennat\NestedMany\Http\Requests;
 
 use Exception;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Fluent;
+use Laravel\Nova\Fields\ActionFields;
+use Laravel\Nova\Fields\FieldCollection;
 use Laravel\Nova\Http\Requests\ActionRequest;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Lupennat\NestedMany\Models\Nested;
@@ -64,11 +68,14 @@ class NestedActionRequest extends ActionRequest implements NestedResourceRequest
     }
 
     /**
-     * Get the action instance specified by the request.
+     * Get the nested action instance specified by the request.
+     *
+     * Named nestedAction() because Laravel\Nova\Http\Requests\ActionRequest::action()
+     * declares an Action return type in Nova 5 and NestedBaseAction is not an Action.
      *
      * @return \Lupennat\NestedMany\Actions\NestedBaseAction
      */
-    public function action()
+    public function nestedAction()
     {
         return once(function () {
             $hasResources = !empty($this->nestedResources);
@@ -83,11 +90,43 @@ class NestedActionRequest extends ActionRequest implements NestedResourceRequest
     }
 
     /**
+     * Validate the given fields.
+     */
+    public function validateFields(): void
+    {
+        $this->nestedAction()->validateFields($this);
+    }
+
+    /**
+     * Resolve the fields using the request.
+     */
+    public function resolveFields(): ActionFields
+    {
+        return once(function () {
+            $fields = new Fluent;
+
+            $results = (new FieldCollection($this->nestedAction()->fields($this)))
+                ->authorized($this)
+                ->applyDependsOn($this)
+                ->withoutReadonly($this)
+                ->withoutUnfillable()
+                ->mapWithKeys(fn ($field) => [
+                    $field->attribute => $field->fillForAction($this, $fields),
+                ]);
+
+            return new ActionFields(
+                collect($fields->getAttributes()),
+                $results->filter(static fn ($field) => \is_callable($field))
+            );
+        });
+    }
+
+    /**
      * Get the all actions for the request.
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function resolveActions()
+    protected function resolveActions(): Collection
     {
         return $this->newResource()->resolveNestedActions($this)
             ->merge([
