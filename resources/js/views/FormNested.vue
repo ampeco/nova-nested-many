@@ -15,7 +15,7 @@
                         :disabled="loading"
                     >
                         <Icon
-                            :type="!isPanelView ? 'view-list' : 'view-grid'"
+                            :name="!isPanelView ? 'view-list' : 'view-grid'"
                             :title="!isPanelView ? 'view as panels' : 'view as tabs'"
                         />
                     </BasicButton>
@@ -105,6 +105,8 @@
 </template>
 
 <script>
+    import { Icon } from 'laravel-nova-ui';
+    import BasicButton from '../components/buttons/BasicButton.vue';
     import FormPanelsNestedResource from '../components/panels/FormPanelsNestedResource';
     import FormTabsNestedResource from '../components/tabs/FormTabsNestedResource';
     import ActionSelector from '../components/ActionSelector';
@@ -116,7 +118,7 @@
     import HandlesActions from '../mixins/HandlesActions';
 
     import { HandlesValidationErrors } from 'laravel-nova';
-    import { Errors } from 'form-backend-validation';
+    import { Errors } from 'laravel-nova';
 
     export default {
         name: 'ResourceFormNested',
@@ -125,7 +127,7 @@
 
         mixins: [InteractsWithNested, HandlesValidationErrors, NestedFormData, HandlesActions],
 
-        components: { FormPanelsNestedResource, FormTabsNestedResource, ActionSelector },
+        components: { FormPanelsNestedResource, FormTabsNestedResource, ActionSelector, Icon , BasicButton },
 
         props: {
             ...mapProps(['showHelpText', 'mode']),

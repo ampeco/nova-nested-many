@@ -4,7 +4,7 @@
             <Heading :level="1" class="mb-3 flex items-center">
                 <BasicButton type="button" class="px-0 mr-3" v-if="canChangeViewType" @click="switchViewType">
                     <Icon
-                        :type="!isPanelView ? 'view-list' : 'view-grid'"
+                        :name="!isPanelView ? 'view-list' : 'view-grid'"
                         :title="!isPanelView ? 'view as panels' : 'view as tabs'"
                     />
                 </BasicButton>
@@ -52,6 +52,8 @@
 </template>
 
 <script>
+    import { Icon } from 'laravel-nova-ui';
+    import BasicButton from '../components/buttons/BasicButton.vue';
     import { CancelToken, isCancel } from 'axios';
 
     import DetailPanelsNestedResource from '../components/panels/DetailPanelsNestedResource';
@@ -67,7 +69,7 @@
 
         mixins: [InteractsWithNested, Collapsable, InteractsWithResourceInformation],
 
-        components: { DetailPanelsNestedResource, DetailTabsNestedResource },
+        components: { DetailPanelsNestedResource, DetailTabsNestedResource, Icon , BasicButton },
 
         data: () => ({
             canceller: null,

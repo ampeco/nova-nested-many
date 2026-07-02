@@ -1,7 +1,7 @@
 import InteractsWithResources from './InteractsWithResources';
 
 import { mapProps } from '@/mixins';
-import { Errors } from 'form-backend-validation';
+import { Errors } from 'laravel-nova';
 
 export default {
     emits: ['run-action', 'field-changed'],

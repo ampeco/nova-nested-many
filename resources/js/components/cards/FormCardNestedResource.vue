@@ -39,7 +39,7 @@
                 @click="$emit('run-action', deleteAction.uriKey, resource)"
                 v-if="autorizedToDelete && !isSoftDeleted"
             >
-                <Icon type="trash" class="mr-2" /> {{ __(`Remove ${singularName}`) }}
+                <Icon name="trash" class="mr-2" /> {{ __(`Remove ${singularName}`) }}
             </LoadingButton>
             <LoadingButton
                 type="button"
@@ -48,12 +48,13 @@
                 @click="$emit('run-action', restoreAction.uriKey)"
                 v-if="isSoftDeleted && canRestore"
             >
-                <Icon type="reply" class="mr-2" /> {{ __(`Restore ${singularName}`) }}
+                <Icon name="reply" class="mr-2" /> {{ __(`Restore ${singularName}`) }}
             </LoadingButton>
         </div>
     </div>
 </template>
 <script>
+    import { Icon } from 'laravel-nova-ui';
     import { uid } from 'uid/single';
     import { mapProps } from '@/mixins';
     import LoadingButton from '../buttons/LoadingButton';
@@ -64,7 +65,7 @@
         emits: ['run-action', 'field-changed', 'file-deleted', 'file-upload-started', 'file-upload-finished'],
 
         mixins: [InteractsWithResource],
-        components: { LoadingButton },
+        components: { LoadingButton, Icon },
         props: {
             ...mapProps(['showHelpText', 'viaResourceId', 'viaRelationship']),
 

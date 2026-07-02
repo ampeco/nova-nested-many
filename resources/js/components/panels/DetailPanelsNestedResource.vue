@@ -20,7 +20,7 @@
                         class="ml-2 cursor-pointer flex items-center justify-center h-4 w-4"
                         @click="toggleCollapse(index)"
                     >
-                        <Icon class="cursor-pointer" :type="isCollapsed(index) ? 'chevron-right' : 'chevron-down'" />
+                        <Icon class="cursor-pointer" :name="isCollapsed(index) ? 'chevron-right' : 'chevron-down'" />
                     </div>
                 </Heading>
                 <DetailCardNestedResource
@@ -37,6 +37,7 @@
     </div>
 </template>
 <script>
+    import { Icon } from 'laravel-nova-ui';
     import InteractsWithPanels from '../../mixins/InteractsWithPanels';
     import DetailCardNestedResource from '../cards/DetailCardNestedResource';
     import EmptyCardNestedResource from '../cards/EmptyCardNestedResource';
@@ -46,6 +47,6 @@
 
         mixins: [InteractsWithPanels],
 
-        components: { DetailCardNestedResource, EmptyCardNestedResource },
+        components: { DetailCardNestedResource, EmptyCardNestedResource, Icon },
     };
 </script>

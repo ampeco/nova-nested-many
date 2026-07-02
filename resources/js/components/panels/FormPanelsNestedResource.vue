@@ -24,7 +24,7 @@
                             >
                                 <Icon
                                     class="cursor-pointer"
-                                    :type="isCollapsed(index) ? 'chevron-right' : 'chevron-down'"
+                                    :name="isCollapsed(index) ? 'chevron-right' : 'chevron-down'"
                                 />
                             </div>
                         </div>
@@ -68,6 +68,7 @@
     </div>
 </template>
 <script>
+    import { Icon } from 'laravel-nova-ui';
     import EditingResources from '../../mixins/EditingResources';
     import InteractsWithPanels from '../../mixins/InteractsWithPanels';
 
@@ -80,7 +81,7 @@
 
         mixins: [EditingResources, InteractsWithPanels],
 
-        components: { FormCardNestedResource, EmptyCardNestedResource, CreateActionButton },
+        components: { FormCardNestedResource, EmptyCardNestedResource, CreateActionButton, Icon },
 
         watch: {
             lastActiveIndex(val, oldVal) {

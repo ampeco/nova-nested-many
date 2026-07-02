@@ -3,7 +3,7 @@
         <Dropdown class="h-9">
             <slot name="trigger">
                 <BasicButton component="span">
-                    <Icon :solid="true" type="dots-horizontal" />
+                    <Icon type="solid" name="dots-horizontal" />
                 </BasicButton>
             </slot>
             <template #menu>
@@ -33,10 +33,11 @@
 </template>
 
 <script>
-    import BasicButton from '@/components/Buttons/BasicButton';
+    import { Icon } from 'laravel-nova-ui';
+    import BasicButton from '../buttons/BasicButton.vue';
 
     export default {
-        components: { BasicButton },
+        components: { BasicButton, Icon },
         props: {
             runningAction: {
                 type: String,

@@ -14,13 +14,13 @@ class NovaExtension {
   webpackPlugins() {
     return new webpack.ProvidePlugin({
       _: 'lodash',
-      Errors: 'form-backend-validation',
     })
   }
 
   webpackConfig(webpackConfig) {
     webpackConfig.externals = {
       vue: 'Vue',
+      'laravel-nova-ui': 'LaravelNovaUi',
     }
 
     webpackConfig.resolve.alias = {
