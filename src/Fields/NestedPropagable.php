@@ -81,7 +81,7 @@ trait NestedPropagable
      *
      * @return void
      */
-    public function resolveForDisplay($resource, $attribute = null)
+    public function resolveForDisplay($resource, ?string $attribute = null): void
     {
         $request = app(NovaRequest::class);
 
@@ -106,6 +106,6 @@ trait NestedPropagable
             unset($request['nestedResolving']);
         }
 
-        return parent::resolveForDisplay($resource, $attribute);
+        parent::resolveForDisplay($resource, $attribute);
     }
 }

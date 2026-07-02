@@ -114,7 +114,7 @@ class HasManyNested extends Nested
      *
      * @return void
      */
-    public function resolve($resource, $attribute = null)
+    public function resolve($resource, ?string $attribute = null): void
     {
     }
 

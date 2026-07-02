@@ -102,7 +102,7 @@ trait NestedStorable
      *
      * @return array<string, array<int, string|\Illuminate\Validation\Rule|\Illuminate\Contracts\Validation\Rule|callable>>
      */
-    public function getCreationRules(NovaRequest $request)
+    public function getCreationRules(NovaRequest $request): array
     {
         return array_merge_recursive(parent::getCreationRules($request), $this->getAvailableValidationRules($request));
     }
@@ -112,7 +112,7 @@ trait NestedStorable
      *
      * @return array<string, array<int, string|\Illuminate\Validation\Rule|\Illuminate\Contracts\Validation\Rule|callable>>
      */
-    public function getUpdateRules(NovaRequest $request)
+    public function getUpdateRules(NovaRequest $request): array
     {
         return array_merge_recursive(parent::getUpdateRules($request), $this->getAvailableValidationRules($request));
     }
@@ -263,7 +263,7 @@ trait NestedStorable
      *
      * @return (\Closure():(void))|null
      */
-    public function fillInto(NovaRequest $request, $model, $attribute, $requestAttribute = null)
+    public function fillInto(NovaRequest $request, object $model, string $attribute, ?string $requestAttribute = null)
     {
         if (!$model->exists) {
             $model::created(function ($model) use ($request, $requestAttribute, $attribute) {
