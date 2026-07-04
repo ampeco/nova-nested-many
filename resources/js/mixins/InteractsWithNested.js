@@ -102,7 +102,7 @@ export default {
          * Get the singular name for the resource
          */
         singularName() {
-            return _.capitalize(this.field.singularLabel);
+            return _.upperFirst(this.field.singularLabel);
         },
 
         authorizedToCreateNested() {
