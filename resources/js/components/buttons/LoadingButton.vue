@@ -1,6 +1,6 @@
 <template>
     <component v-bind="{ size, align, ...$attrs }" :is="component" ref="button">
-        <span :class="{ invisible: processing || loading }">
+        <span class="inline-flex items-center" :class="{ invisible: processing || loading }">
             <slot />
         </span>
 
@@ -15,7 +15,11 @@
 </template>
 
 <script>
+    import DefaultButton from './DefaultButton.vue';
+
     export default {
+        components: { DefaultButton },
+
         props: {
             size: {
                 type: String,
