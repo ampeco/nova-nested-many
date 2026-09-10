@@ -22,11 +22,10 @@
     },
     "dependencies": {
         "@floating-ui/vue": "^1.0.2",
-        "@inertiajs/inertia": "^0.11.0",
         "@popperjs/core": "^2.11.2",
         "@vueuse/core": "^10.4.1",
         "@vueuse/integrations": "^10.4.1",
-        "axios": "^1.6.2",
+        "axios": "^1.18.1",
         "floating-vue": "^2.0.0-beta.22",
         "inflector-js": "^1.0.1",
         "laravel-nova-ui": "^0.4.0",
